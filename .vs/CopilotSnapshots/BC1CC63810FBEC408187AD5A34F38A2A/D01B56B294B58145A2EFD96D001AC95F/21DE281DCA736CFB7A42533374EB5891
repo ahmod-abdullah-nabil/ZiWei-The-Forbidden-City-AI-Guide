@@ -1,0 +1,22 @@
+﻿version: '3.8'
+
+services:
+  ziwei-website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ziwei-forbidden-city
+    ports:
+      - "80:80"
+    # volumes:
+      # Mount 3D models directory if you want to update models without rebuilding
+      # Uncomment both the volumes: line and the entries below as needed:
+      # - ./public/models:/usr/share/nginx/html/models
+      # - ./public/assets:/usr/share/nginx/html/assets
+    restart: unless-stopped
+    networks:
+      - ziwei-network
+
+networks:
+  ziwei-network:
+    driver: bridge
